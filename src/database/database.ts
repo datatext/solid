@@ -11,7 +11,7 @@ if (process.env[SOLID_DATABASE_CONNECTION] !== undefined) {
   poolConfig.connectionString = process.env[SOLID_DATABASE_CONNECTION];
 }
 
-export const pool = new Pool(poolConfig);
+const pool = new Pool(poolConfig);
 
 export function query(queryText: string, values?: any[]): Promise<QueryResult> {
   if (!process.env[LOG_DATABASE_QUERIES]) {
@@ -63,8 +63,30 @@ export function getClient(callback: (err: Error, client: Client, done: () => voi
 
 @injectable()
 export class Database {
+
+  /**
+   * Queries the database.
+   *
+   * See https://node-postgres.com/features/queries#parameterized-query
+   *
+   * @param {string} queryText
+   * @param {any[]} values
+   * @returns {Promise<QueryResult>}
+   */
   query(queryText: string, values?: any[]): Promise<QueryResult> {
     return query(queryText, values);
+  }
+
+  /**
+   * Closes the underlying connection pool by draining active clients. Useful only upon shutdown of the application
+   * or at the end of a script.
+   *
+   * See https://node-postgres.com/api/pool#pool-end
+   *
+   * @returns {Promise<void>}
+   */
+  close(): Promise<void> {
+    return pool.end();
   }
 }
 

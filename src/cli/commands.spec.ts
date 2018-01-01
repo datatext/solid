@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { Command, COMMAND, Executable } from './commands';
 import { container } from '../container';
 

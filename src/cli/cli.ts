@@ -7,13 +7,15 @@ import { container } from '../container';
 import { COMMAND, CommandDefinition } from "./commands";
 
 import { ListCommand } from '../commands';
-import { DatabaseTestCommand } from "../database/commands";
+import { DatabaseConnectionCommand } from "../database/commands";
+import { DatabaseMigrateCommand } from "../database/migrations/commands";
 
 {
   // ಠ益ಠ
   // don't tree-shake me
   ListCommand;
-  DatabaseTestCommand;
+  DatabaseConnectionCommand;
+  DatabaseMigrateCommand;
 }
 
 const commands: CommandDefinition[] = container.getAll(COMMAND);

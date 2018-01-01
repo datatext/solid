@@ -6,7 +6,7 @@ import { defaults } from 'pg';
   name: 'database:connection',
   description: 'Test and display details about the database connection'
 })
-export class DatabaseTestCommand implements Executable {
+export class DatabaseConnectionCommand implements Executable {
   async execute() {
     return await query('SELECT current_database()')
       .then(result => {
