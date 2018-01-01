@@ -1,0 +1,59 @@
+{
+  "name": "@datatext/solid",
+  "version": "0.0.1",
+  "description": "Building blocks for a GraphQL CMS API",
+  "main": "dist/index.js",
+  "bin": {
+    "solid": "dist/bin/solid"
+  },
+  "files": [
+    "build",
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "repository": "https://github.com/datatext/solid",
+  "author": "Jérôme Velociter",
+  "license": "MPL-2.0",
+  "scripts": {
+    "all": "yarn run build && yarn run package",
+    "build": "tsc",
+    "package": "rollup -c rollup.config.js ",
+    "test": "jest"
+  },
+  "dependencies": {
+    "commander": "^2.12.2",
+    "dotenv": "^4.0.0",
+    "inversify": "^4.9.0",
+    "pg": "^7.4.0",
+    "pg-promise": "^7.3.2",
+    "reflect-metadata": "^0.1.10"
+  },
+  "peerDependencies": {
+    "inversify": "^4.9.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.2",
+    "@types/jest": "^21.1.8",
+    "@types/node": "^8.5.1",
+    "@types/pg": "^7.4.1",
+    "jest": "^21.2.1",
+    "pg-native": "^2.2.0",
+    "rollup": "^0.52.1",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-executable": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "ts-jest": "^21.2.4",
+    "typescript": "2.6.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/.*\\.spec\\.(ts|tsx|js)$"
+  }
+}
